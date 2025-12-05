@@ -1,27 +1,30 @@
 # Projet HealthCare Knowledge Graph
 
-## 1. Structure du projet
+---
 
+## 1️⃣ Structure du projet
+
+```bash
 SMAI_Project/
 │
 ├── data/
-│ ├── medtext_2.csv # Dataset original
-│ └── medtext_2clean.csv # Dataset nettoyé après exploration
+│   ├── medtext_2.csv                  # Dataset original
+│   └── medtext_2clean.csv             # Dataset nettoyé après exploration
 │
 ├── src/
-│ ├── graph/
-│ │ ├── extract_entities.py # Extraction des entités médicales
-│ │ ├── build_graph.py # Création du graphe Neo4j
-│ │ ├── neo4j_connection.py # Connexion à Neo4j (fonction get_neo4j_driver)
-│ │ └── test_neo4j_connection.py # Test de la connexion Neo4j
-│ │
-│ └── utils/ # (optionnel) fonctions utilitaires
+│   ├── graph/
+│   │   ├── extract_entities.py        # Extraction des entités médicales
+│   │   ├── build_graph.py              # Création du graphe Neo4j
+│   │   ├── neo4j_connection.py        # Connexion à Neo4j (fonction get_neo4j_driver)
+│   │   └── test_neo4j_connection.py   # Test de la connexion Neo4j
+│   │
+│   └── utils/                          # (optionnel) Fonctions utilitaires
 │
 ├── notebook/
-│ └── data_exploration.ipynb # Notebook pour l'exploration et nettoyage
+│   └── data_exploration.ipynb          # Notebook pour l'exploration et nettoyage
 │
 └── README.md
-
+```
 
 ---
 
@@ -96,9 +99,9 @@ Vérification que la base `medgraph` est accessible et prête à recevoir des n�
 ---
 
 ### 2.6 Interrogation du Graphe
-Requêtes exemples pour récupérer maladies avec symptômes et traitements :
+Requête exemple pour récupérer maladies avec symptômes et traitements :
 ```cypher
 MATCH (d\:Disease)-[\:HAS_SYMPTOM]->(s\:Symptom),
       (d)-[\:TREATED_BY]->(t\:Treatment)
 RETURN d.name, collect(s.name) as symptoms, collect(t.name) as treatments
-
+```
